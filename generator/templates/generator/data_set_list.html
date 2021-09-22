@@ -1,0 +1,13 @@
+{% extends 'generator/base.html' %}
+{% block content %}
+<body>
+<div class="container my-4">
+    <p class="h1">Create file</p>
+    <div class="card my-4 shadow">
+        {% for data_set in data_sets %}
+        <span><a href="{{ data_set.url }}">Download</a> created at {{ data_set.uploaded_at }}</span>
+        {% endfor %}
+    </div>
+</div>
+</body>
+{% endblock content %}

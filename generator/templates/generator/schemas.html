@@ -1,0 +1,30 @@
+{% extends 'generator/base.html' %}
+{% block content %}
+<body>
+          <div class="container my-4">
+            <p class="h1">Schemas list</p>
+            <div class="card my-4 shadow">
+                {% for schema in schemas %}
+                <h2>{{ schema.schema_name}}</h2>
+                <p>Author: {{ schema.owner }}, Created at: {{ schema.date_added}}</p>
+                <div>
+                    <a href="{% url 'generator:schema_view' schema.id %}">
+                        <button class="btn btn-primary">Edit</button>
+                    </a>
+                    <a href="{% url 'generator:create_file' schema.id %}">
+                        <button class="btn btn-primary">Create CSV</button>
+                    </a>
+                    <a href="{% url 'generator:data_set_list' schema.id %}">
+                        <button class="btn btn-success">View CSVs</button>
+                    </a>
+                    <a href="{% url 'generator:delete_schema' schema.id %}">
+                        <button class="btn btn-danger">Delete</button>
+                    </a>
+                </div>
+                <hr>
+                {% endfor %}
+
+            </div>
+          </div>
+    </body>
+{% endblock content%}

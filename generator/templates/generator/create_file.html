@@ -1,0 +1,28 @@
+{% extends 'generator/base.html' %}
+{% block content %}
+{% load static%}
+<body>
+<div class="container my-4">
+    <p class="h1">Create file</p>
+    <div class="card my-4 shadow">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="card col-sm mb-3">
+                <div class="card-body">
+                    <div class="input-group row ">
+                        <label for="schema-name-field" class="font-weight-bold ">Schema name: {{ schema_name }}</label>
+                        <input type="text" id="schema-name-field" class="form-control form-control-sm  mr-1 col-sm-2"
+                               name="rows-number" value="" placeholder="Number of rows" required>
+                        <div class="clearfix mt-4">
+                            <button type="submit" class="btn btn-primary btn-sm float-right text-uppercase shadow-sm">
+                                Generate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+{% endblock content %}

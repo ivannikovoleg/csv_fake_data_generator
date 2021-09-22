@@ -1,0 +1,71 @@
+{% extends 'generator/base.html' %}
+{% load static %}
+{% block content %}
+<body>
+<div class="container my-4">
+    <p class="h1">Schema configuration</p>
+    <div class="card my-4 shadow">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="card col-sm mb-3">
+                <div class="card-body">
+                    <div class="input-group row ">
+                        <label for="schema-name-field" class="font-weight-bold ">Schema name</label>
+                        <input type="text" id="schema-name-field" class="form-control form-control-sm  mr-1 col-sm-2"
+                               name="schema_name" value="{{ schema_name }}" placeholder="Name" required>
+                        {% for schema in schema_json %}
+                        <div id="dynamic-field-{{ schema.0 }}" class="input-group row dynamic-field col-xs-2">
+                            <label for="column-field" class="font-weight-bold mr-1 ">Column {{ schema.0 }}</label>
+                            <input type="text" id="column-field" class="form-control form-control-sm  mr-1 col-sm-2"
+                                   name="column_name" value="{{ schema.1 }}" placeholder="Input Column Name" required>
+                            <select id="type-field" class="form-control form-control-sm  mr-1 col-sm-1" name="type">
+                                <option value="{{ schema.2 }}">{{ schema.2 }}</option>
+                                <option value="name"> Name</option>
+                                <option value="job"> Job</option>
+                                <option value="email"> E-mail</option>
+                                <option value="phone"> Phone</option>
+                                <option value="company"> Company</option>
+                                <option value="text"> Text</option>
+                                <option value="integer"> Integer</option>
+                                <option value="address"> Address</option>
+                            </select>
+
+                            <input type="number" id="from-field" class="form-control form-control-sm  mr-1 col-sm-2"
+                                   name="from" value="{{ schema.3 }}" placeholder="From">
+                            <input type="number" id="to-field" class="form-control form-control-sm  mr-1 col-sm-2"
+                                   name="to" value="{{ schema.4 }}" placeholder="To">
+                            <input type="number" id="order-field" class="form-control form-control-sm  mr-1 col-sm-2"
+                                   name="order" value="{{ schema.0 }}" placeholder="Order" required readonly="readonly">
+
+
+
+                        </div>
+                        {% endfor %}
+                        <div class="clearfix mt-4">
+                            <button type="button" id="add-button"
+                                    class="btn btn-success btn-sm float-left text-uppercase shadow-sm"><i
+                                    class="fas fa-plus fa-fw"></i> Add
+                            </button>
+                            <button type="button" id="remove-button"
+                                    class="btn btn-danger btn-sm float-left text-uppercase ml-1"><i
+                                    class="fas fa-minus fa-fw"></i> Remove
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-sm float-right text-uppercase shadow-sm">
+                                Submit
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+          <script src="{% static 'js/dynamic.fields.js' %}"></script>
+          <script>
+
+          </script>
+
+
+    </body>
+{% endblock content%}

@@ -1,0 +1,21 @@
+{% extends 'generator/base.html' %}
+{% block content %}
+<body>
+<div class="container my-4">
+    <p class="h1">Schema: {{ schema.schema_name }}</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="card my-4 shadow">
+            <h2>Are you sure want to delete this schema?</h2>
+            <div>
+                <a href="{% url 'generator:schemas' %}">
+                    <button class="btn btn-primary">Cancel</button>
+                </a>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+
+{% endblock content %}
